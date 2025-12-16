@@ -139,7 +139,9 @@
       <br>
       <br>
       <button type="button" onclick="admin_func()" style="width: 220px;  height: 50px; text-align: center; background-color:cornflowerblue;">LOGIN</button>
-   
+      <br>
+      <br>
+   <span id="error" style="color:white;"></span>
     </form>
 
 
@@ -158,6 +160,7 @@
     }
     else{
       console.log("login failed retry it!!!");
+      document.getElementById('error').innerHTML='please! check your details';
     }
   }
 </script>
