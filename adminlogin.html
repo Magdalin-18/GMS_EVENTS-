@@ -129,40 +129,74 @@
     <h2><i class="bi bi-shield-lock"></i> Admin Panel</h2>
     <p>Please login to continue</p>
 
-    <form >
-      <input type="email" placeholder="Enter you emailid" id="email_id" style="padding: 12px; background-color:white " required >
-      <br>
-      
-      <br>
+    <form>
+  <input type="email" placeholder="Enter your emailid" id="email_id" style="padding: 12px; background-color:white" required>
+  <span style="color:white; font-size:10px;  margin-left:10px" id="email_error"></span>
+  <br><br>
 
-      <input type="password" placeholder="Enter your password" id="password" style="padding: 12px; background-color:white;" required>
-      <br>
-      <br>
-      <button type="button" onclick="admin_func()" style="width: 220px;  height: 50px; text-align: center; background-color:cornflowerblue;">LOGIN</button>
-      <br>
-      <br>
-   <span id="error" style="color:white;"></span>
-    </form>
+  <input type="password" placeholder="Enter your password" id="password" style="padding: 12px; background-color:white;" required>
+  <span style="color:white; font-size:10px;  margin-left:10px" id="password_error"></span>
+  <br><br>
+  <input type="password" placeholder="confirm password" id="confirm_password" style="padding: 12px; background-color:white;" required>
+  <span style="color:white; font-size:10px;  margin-left:10px" id="confirmpass_error"></span>
+  <br><br>
+
+  <button type="button" onclick="admin_func()" style="width: 220px; height: 50px; text-align: center; background-color:cornflowerblue;">LOGIN</button>
+  <br><br>
+  
+  <span id="error" style="color:white;"></span>
+</form>
 
 
   </div>
 
 </div>
+
 <script>
   function admin_func(){
-    console.log("admin is logging in");
-    let email=document.getElementById('email_id').value;
-    console.log(email);
-    let password=document.getElementById('password').value;
-    if(email=="magfelz18@gmail.com" && password=="123456789"){
-      console.log("logged successfully");
-      window.location.href="admin.html";
-    }
-    else{
-      console.log("login failed retry it!!!");
-      document.getElementById('error').innerHTML='please! check your details';
-    }
+  console.log("admin is logging in");
+  
+  let email = document.getElementById('email_id').value;
+  let password = document.getElementById('password').value;
+  let confirmpass =document.getElementById('confirm_password').value;
+
+
+  // document.getElementById('email_error').innerHTML = "";
+  // document.getElementById('password_error').innerHTML = "";
+  // document.getElementById('confirmpass_error').innerHTML="";
+  // document.getElementById('error').innerHTML = "";
+
+  if(email == "" && password == ""){
+    document.getElementById('email_error').innerHTML = "Username is required";
+    document.getElementById('password_error').innerHTML = "Password is required";
   }
+  else if(email == ""){
+    document.getElementById('email_error').innerHTML = "Username is required";
+  }
+  else if(password == ""){
+    document.getElementById('password_error').innerHTML = "Password is required";
+  }
+ 
+  else if(password.length<6){
+    document.getElementById('password_error').innerHTML = "Password must be atleast 7 character";
+  }
+  else if(confirmpass == ""){
+    document.getElementById('confirmpass_error').innerHTML = " confirm Password is required";
+  }
+  else if(email == "magfelz18@gmail.com" && password == "123456789"){
+    console.log("Logged in successfully");
+    window.location.href = "admin.html";
+  }
+  else if(password!=confirmpass){
+    document.getElementById('confirmpass_error').innerHTML="password is wrong";
+  }
+  else{
+    console.log("Login failed, retry!!!");
+    document.getElementById('error').innerHTML = 'Please check your details';
+  }
+}
+ 
+  
 </script>
 
 </body>
